@@ -3,14 +3,14 @@ DROP TABLE hospitals;
 CREATE EXTERNAL TABLE hospitals 
 (
 	provider_id string,
-	hosptial_name string,
+	hospital_name string,
 	address string,
 	city string,
 	state string,
 	zip_code string,
 	county_name string,
 	phone_number string,
-	hosptial_type string,
+	hospital_type string,
 	hospital_ownership string,
 	emergency_services string,
 	meets_criteria_for_meaningful_use_of_ehrs string,
@@ -67,7 +67,7 @@ DROP TABLE effective_care;
 CREATE EXTERNAL TABLE effective_care 
 (
 	provider_id string,
-	hosptial_name string,
+	hospital_name string,
 	address string,
 	city string,
 	state string,
@@ -98,7 +98,7 @@ DROP TABLE readmissions;
 CREATE EXTERNAL TABLE readmissions 
 (
 	provider_id string,
-	hosptial_name string,
+	hospital_name string,
 	address string,
 	city string,
 	state string,
@@ -131,7 +131,7 @@ DROP TABLE survey_responses;
 CREATE EXTERNAL TABLE survey_responses 
 (
 	provider_id string,
-	hosptial_name string,
+	hospital_name string,
 	address string,
 	city string,
 	state string,
