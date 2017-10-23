@@ -5,6 +5,6 @@ SELECT
     measure_id,
     measure_name,
     measure_start_date,
-    measute_end_date
+    measure_end_date
 FROM measures
 ;
