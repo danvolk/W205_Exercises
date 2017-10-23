@@ -1,4 +1,4 @@
-DROP my_complications;
+DROP TABLE my_complications;
 
 CREATE TABLE my_complications AS 
 SELECT 
@@ -10,4 +10,3 @@ FROM readmissions
 WHERE measure_id NOT LIKE '%MORT%'
 AND measure_id <> 'PSI_8_POST_HIP'
 ;
-    

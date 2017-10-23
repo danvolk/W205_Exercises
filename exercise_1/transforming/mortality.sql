@@ -1,4 +1,4 @@
-DROP my_mortality;
+DROP TABLE my_mortality;
 
 CREATE TABLE my_mortality AS 
 SELECT 
