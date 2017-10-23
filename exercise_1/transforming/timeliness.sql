@@ -1,13 +1,3 @@
-/*
-Timeliness data is sepearated from effective care to get an overall timeliness composite metric later on. 
-
-- provider_id - foreign key to be used for joining
-- measure_id - identifier unique at the measure level
-- sample - sample size used to record the score
-- score - metric that will be analyzed
-
-*/
-
 DROP TABLE my_timeliness;
 
 CREATE TABLE my_timeliness AS 

@@ -1,7 +1,3 @@
-/*
-Only the essential information is brought in from the survey data. The provider_id is brought in for joining. Only the performance_rate metrics are included for the purposes of this analysis. 
-*/
-
 DROP TABLE my_survey_results;
 
 CREATE TABLE my_survey_responses AS

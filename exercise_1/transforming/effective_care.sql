@@ -1,13 +1,3 @@
-/*
-Effectiveness data is sepearated from timeliness to get an overall effective care composite metric later on. For some measures, a low score is good while for others a high score is good. The case statement inverts the measures where lower rates are better to make analysis easier later on.
-
-- provider_id - foreign key to be used for joining
-- measure_id - identifier unique at the measure level
-- sample - sample size used to record the score
-- score - metric that will be analyzed
-
-*/
-
 DROP TABLE my_effective_care;
 
 CREATE TABLE my_effective_care AS
