@@ -1,4 +1,4 @@
-DROP TABLE my_survey_results;
+DROP TABLE my_survey_responses;
 
 CREATE TABLE my_survey_responses AS
 SELECT 
