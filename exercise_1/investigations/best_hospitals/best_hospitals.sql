@@ -1,13 +1,12 @@
 SELECT 
     A.provider_id,
-    -- B.hospital_name,
+    B.hospital_name,
     B.state,
     B.rating,
-    CAST(AVG(provider_rank) AS DECIMAL(3,2)) avg_proc_percentile,
+    CAST(AVG(provider_rank)*100 AS DECIMAL(4,1)) avg_proc_percentile,
     COUNT(DISTINCT measure_id) proc_count,
-    SUM(CASE WHEN provider_rank>0.5 THEN 1 ELSE 0 END) above_50,
-    SUM(CASE WHEN provider_rank>0.75 THEN 1 ELSE 0 END) above_75
-    --VARIANCE(provider_rank) var_proc
+    CAST(100*SUM(CASE WHEN provider_rank>0.5 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) perc_above_50,
+    CAST(100*SUM(CASE WHEN provider_rank>0.80 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) perc_above_80
 FROM ( 
     SELECT 
         provider_id,
@@ -20,6 +19,7 @@ FROM (
 LEFT JOIN my_hospitals B
 ON A.provider_id = B.provider_id
 GROUP BY A.provider_id, B.hospital_name, B.state, B.rating
-HAVING proc_count > 17
+HAVING proc_count > 15
+AND perc_above_80 > 50
 ORDER BY avg_proc_percentile DESC
-LIMIT 25;
+LIMIT 10;
