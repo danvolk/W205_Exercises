@@ -1,6 +1,7 @@
 SELECT 
     state,
     CAST(100*AVG(state_rank) AS DECIMAL(5,1)) avg_perc,
+    CAST(100*STDDEV(state_rank) AS DECIMAL(5,1)) st_dev,
     COUNT(DISTINCT measure_id) measure_count,
     CAST(100*SUM(CASE WHEN state_rank>0.5 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_50,
     CAST(100*SUM(CASE WHEN state_rank>0.75 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_75

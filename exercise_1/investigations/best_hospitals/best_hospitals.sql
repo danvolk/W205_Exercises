@@ -3,7 +3,8 @@ SELECT
     B.hospital_name,
     B.state,
     B.rating,
-    CAST(AVG(provider_rank)*100 AS DECIMAL(4,1)) avg_percentile,
+    CAST(100*AVG(provider_rank) AS DECIMAL(4,1)) avg_perc,
+    CAST(100*STDDEV(provider_rank) AS DECIMAL(5,1)) st_dev,
     COUNT(DISTINCT measure_id) proc_count,
     CAST(100*SUM(CASE WHEN provider_rank>0.5 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_50,
     CAST(100*SUM(CASE WHEN provider_rank>0.8 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_80
@@ -21,5 +22,5 @@ ON A.provider_id = B.provider_id
 GROUP BY A.provider_id, B.hospital_name, B.state, B.rating
 HAVING proc_count > 15
 AND above_80 > 50
-ORDER BY avg_proc_percentile DESC
+ORDER BY avg_perc DESC
 LIMIT 10;

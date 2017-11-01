@@ -13,18 +13,18 @@ I did this by first manipulating the my_procedures table so that all procedures 
 - The measure_count column is used to remove states that have percentile scores for less than 20 of the procedures.
 
 Findings: 
-The following 10 states have the highest average percentile rank across all procedures performed in the state. South Dakota performs well by scoring consistenly above the 50th percentile and actually scoring in the 75th percentile more than 47% of the time. Each state has a good amount of procedures used to assess the rank and each perform above average relatively frequently across procedures.
+The following 10 states have the highest average percentile rank across all procedures performed in the state. The standard deviation ofthe percentile rank is included. However, there is a considerable amount of variability across procedures and depending on which procedures are heavily represented in each state, the standard deviation is a somewhat noisy indicator of consistency. Instead, I chose to evaluate consistency by measuring how often states scored in the higher percentiles across all procedures. For instance, South Dakota performs well by scoring in the 75th percentile more than 47% of the time and having an average percentile rank of 67% across all procedures. Each state in the list below. has a good amount of procedures used to assess the rank and each perform above average relatively frequently across procedures.
 
 
-|state |avg_percentile |measure_count |above_50 |above_75
-|------+---------------+--------------+---------+---------
-|SD    |67             |23            |69.6     |47.8
-|MN    |64.5           |34            |70.6     |47.1
-|WI    |62             |34            |67.6     |41.2
-|MA    |60.7           |34            |64.7     |44.1
-|UT    |60.6           |29            |69       |44.8
-|FL    |59.7           |34            |67.6     |35.3
-|VA    |58.9           |33            |51.5     |33.3
-|NE    |58.3           |29            |58.6     |41.4
-|KS    |57.4           |31            |54.8     |35.5
-|CO    |57.3           |33            |57.6     |30.3
+|state |avg_perc |std_dev |measure_count |above_50 |above_75|
+|------+---------+--------+--------------+---------+--------|
+|SD    |67       |29.1    |23            |69.6     |47.8    |
+|MN    |64.5     |26.6    |34            |70.6     |47.1    |
+|WI    |62       |27.9    |34            |67.6     |41.2    |
+|MA    |60.7     |30.2    |34            |64.7     |44.1    |
+|UT    |60.6     |31.3    |29            |69       |44.8    |
+|FL    |59.7     |25.8    |34            |67.6     |35.3    |
+|VA    |58.9     |24      |33            |51.5     |33.3    |
+|NE    |58.3     |30.4    |29            |58.6     |41.4    |
+|KS    |57.4     |27.9    |31            |54.8     |35.5    |
+|CO    |57.3     |28.1    |33            |57.6     |30.3    |

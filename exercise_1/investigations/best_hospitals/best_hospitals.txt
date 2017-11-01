@@ -12,17 +12,17 @@ I did this by first manipulating the my_procedures table so that all procedures 
 - To control for performance consistency, hospitals included have more than 50% of their scores over the 80th percentile.
 
 Findings:
-The methodology outputs the following highly ranked providers. Each provider has data for more than 15 procedures and consistently scores in the 80th percentile across various procedures. none of the hospitals below have an average procedural percentile below 75%. 
+The methodology outputs the following highly ranked providers. Each provider has data for more than 15 procedures and consistently scores in the 80th percentile across various procedures. none of the hospitals below have an average procedural percentile below 75%. Standard deviation values are high, but somewhat hard to evaluate given that procedural variability is considerable. For this reason, the above_50 and above_80 columns are brought in to provide more intuitive context around how often each provider has a high score for given procedures.
 
-|provider_id |hospital_name                         |state |rating |avg_percentile |proc_count |above_50 |above_80
-|------------+--------------------------------------+------+-------+---------------+-----------+---------+---------
-|370026      |ST MARY'S REGIONAL MEDICAL CENTER     |OK    |4      |79.6           |28         |89.3     |57.1
-|190167      |MERCY REGIONAL MEDICAL CENTER         |LA    |4      |77.8           |28         |89.3     |57.1
-|420087      |ROPER HOSPITAL                        |SC    |5      |77.5           |31         |87.1     |58.1
-|430095      |AVERA HEART HOSPITAL OF SOUTH DAKOTA  |SD    |5      |77.2           |19         |84.2     |52.6
-|280129      |NEBRASKA ORTHOPAEDIC HOSPITAL         |NE    |5      |77             |17         |82.4     |52.9
-|180127      |FRANKFORT REGIONAL MEDICAL CENTER     |KY    |3      |76.4           |29         |86.2     |58.6
-|010036      |ANDALUSIA REGIONAL HOSPITAL           |AL    |3      |76.3           |27         |85.2     |59.3
-|450431      |ST DAVID'S MEDICAL CENTER             |TX    |5      |76.1           |32         |84.4     |56.3
-|420104      |MOUNT PLEASANT HOSPITAL               |SC    |4      |76             |24         |83.3     |58.3
-|151323      |PARKVIEW LAGRANGE HOSPITAL            |IN    |4      |75.7           |16         |75       |62.5
+|provider_id |hospital_name                         |state |rating |avg_perc |st_dev | proc_count |above_50 |above_80
+|------------+--------------------------------------+------+-------+---------+-------+------------+---------+---------
+|370026      |ST MARY'S REGIONAL MEDICAL CENTER     |OK    |4      |79.6     |18.5   |28          |89.3     |57.1
+|190167      |MERCY REGIONAL MEDICAL CENTER         |LA    |4      |77.8     |19.7   |28          |89.3     |57.1
+|420087      |ROPER HOSPITAL                        |SC    |5      |77.5     |22.3   |31          |87.1     |58.1
+|430095      |AVERA HEART HOSPITAL OF SOUTH DAKOTA  |SD    |5      |77.2     |24.7   |19          |84.2     |52.6
+|280129      |NEBRASKA ORTHOPAEDIC HOSPITAL         |NE    |5      |77       |22     |17          |82.4     |52.9
+|180127      |FRANKFORT REGIONAL MEDICAL CENTER     |KY    |3      |76.4     |27.3   |29          |86.2     |58.6
+|010036      |ANDALUSIA REGIONAL HOSPITAL           |AL    |3      |76.3     |26.4   |27          |85.2     |59.3
+|450431      |ST DAVID'S MEDICAL CENTER             |TX    |5      |76.1     |27.7   |32          |84.4     |56.3
+|420104      |MOUNT PLEASANT HOSPITAL               |SC    |4      |76       |22.5   |24          |83.3     |58.3
+|151323      |PARKVIEW LAGRANGE HOSPITAL            |IN    |4      |75.7     |24.6   |16          |75       |62.5
