@@ -1,0 +1,25 @@
+Summary:
+Finding the variability is simply a matter of finding which measures have the highest variance across hospitals. It is important to scale measures before comparing them.
+
+Methodology:
+To find which procedures have the most variability across hospitals its important to show the measures on the same scale. If I were simply to calculate the variance, those measures which are on a scale from 0-1 would have a much lower variance than those on a scale from 0-100. Therefore, I start by scaling the measures and then computing the variance. I validate by including the mean and standard deviation for each procedure.
+
+- Scale the procedure scores to an adjusted score by dividing each score by the average
+- Find the variance across all providers for each procedure and sort from largest to smallest
+- For context, include the average score as well as the standard deviation for each procedure
+
+Findings:
+The 10 procedures below all had the highest variability across all providers. The procedure VTE_6 corresponds to the % of patients who did not get treatment that could have prevented a blood clot. This has the highest variance as many providers reported 0, but some reported very high values. Nearly all the procedures in the table below have a standard deviation that is higher than their average score which could indicate heavy skew in each of the metrics.
+
+|measure_id  |avg_score |std_score |proc_var |
+|------------+----------+----------+---------|
+|VTE_6       |1.94      |4.64      |5.72
+|PC_01       |1.98      |4.38      |4.91
+|STK_4       |8.95      |16.15     |3.25
+|VTE_5       |7.33      |12.18     |2.76
+|IMM_2       |8.16      |13.16     |2.6
+|OP_30       |13.76     |19.24     |1.96
+|OP_4        |4.99      |6.35      |1.62
+|OP_29       |20.01     |24.44     |1.49
+|PSI_3_ULCER |0.45      |0.49      |1.18
+|OP_22       |1.79      |1.77      |0.98

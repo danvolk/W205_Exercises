@@ -1,5 +1,5 @@
 SELECT
-    CORR(avg_proc_percentile, overall_rating)
+    CAST(CORR(avg_proc_percentile, overall_rating) AS DECIMAL(5,3)) correlation
 FROM ( 
     SELECT 
         provider_id,
@@ -16,5 +16,4 @@ FROM (
     GROUP BY provider_id
 ) procs
 LEFT JOIN my_survey_responses surv
-ON procs.provider_id = surv.provider_id
-LIMIT 20;
+ON procs.provider_id = surv.provider_id;

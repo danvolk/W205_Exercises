@@ -1,6 +1,5 @@
 SELECT 
     proc.measure_id,
-    measure_name,
     CAST(AVG(score) AS DECIMAL(8,2)) avg_score,
     CAST(STD(score) AS DECIMAL(8,2)) std_score,
     CAST(VARIANCE(adjusted_score) AS DECIMAL(8,2)) proc_var

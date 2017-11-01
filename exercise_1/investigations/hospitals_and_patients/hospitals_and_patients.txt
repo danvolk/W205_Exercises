@@ -1,0 +1,14 @@
+Summary: 
+To find the correlation between procedural performance and survey scores, I again needed a way to aggregate each provider's performance across a variety of metrics. To do this with procedures I again chose to find the average percentile. Meanwhile, for survey results, an aggregate overall rating is provided and is the sole metric used for analysis. 
+
+Methodology:
+As in previous problems I aggregated procedural scores into an average percentile score for each provider. I then use the CORR function to find the correlation between that value and the overall survey results for each provider.
+
+Findings:
+The overall correlation was showed borderline correlation between survey results and procedural rankings. This is likely due to the fact that patients usually focus on the treatment they get while in the hospital while the procedures focus on the effectiveness of the care. There may not be a great deal of correlation, because the two measures aren't addressing the same topic.
+
+|correlation |
+|------------|
+|0.301       |
+
+

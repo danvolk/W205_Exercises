@@ -1,0 +1,28 @@
+
+Summary:
+For my analysis of best hospitals, I tried to isolate those hospitals which consistently scored in the high percentiles of the various procedural categories. I rank each hospital on a percentile scale in order to keep everything on the same scale. I determine consistency by analyzing only the hospitals that have 50% of their scores in the 80th-percentile or higher. 
+
+Methodology:
+I did this by first manipulating the my_procedures table so that all procedures were ordered by poor scores to high scores. That is when a low score is a better performance such as mortality rate the lowest score gets a high percentile score. When higher scores are worse the order is flipped in the my_procedures table. Once the my_procedures table is properly ordered, the following is done to determine the high performing hospitals.
+
+- Find the PERCENT_RANK to get the percentile for each procedure. (0=low, 99=high)
+- Remove the NULL cases so that a hospitals that don't provide their procedure scores aren't automatically asigned low scores
+- The hospitals are then ranked by the average percentile score across each procedure.
+- To eliminate small sample sizes a hospital must provide data for more than 15 procedures in order to qualify.
+- To control for performance consistency, hospitals included have more than 50% of their scores over the 80th percentile.
+
+Findings:
+The methodology outputs the following highly ranked providers. Each provider has data for more than 15 procedures and consistently scores in the 80th percentile across various procedures. none of the hospitals below have an average procedural percentile below 75%. 
+
+|provider_id |hospital_name                         |state |rating |avg_percentile |proc_count |above_50 |above_80
+|------------+--------------------------------------+------+-------+---------------+-----------+---------+---------
+|370026      |ST MARY'S REGIONAL MEDICAL CENTER     |OK    |4      |79.6           |28         |89.3     |57.1
+|190167      |MERCY REGIONAL MEDICAL CENTER         |LA    |4      |77.8           |28         |89.3     |57.1
+|420087      |ROPER HOSPITAL                        |SC    |5      |77.5           |31         |87.1     |58.1
+|430095      |AVERA HEART HOSPITAL OF SOUTH DAKOTA  |SD    |5      |77.2           |19         |84.2     |52.6
+|280129      |NEBRASKA ORTHOPAEDIC HOSPITAL         |NE    |5      |77             |17         |82.4     |52.9
+|180127      |FRANKFORT REGIONAL MEDICAL CENTER     |KY    |3      |76.4           |29         |86.2     |58.6
+|010036      |ANDALUSIA REGIONAL HOSPITAL           |AL    |3      |76.3           |27         |85.2     |59.3
+|450431      |ST DAVID'S MEDICAL CENTER             |TX    |5      |76.1           |32         |84.4     |56.3
+|420104      |MOUNT PLEASANT HOSPITAL               |SC    |4      |76             |24         |83.3     |58.3
+|151323      |PARKVIEW LAGRANGE HOSPITAL            |IN    |4      |75.7           |16         |75       |62.5

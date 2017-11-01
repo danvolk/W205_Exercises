@@ -1,20 +1,30 @@
 SELECT 
-    B.state,
-    CAST(AVG(provider_rank)*100 AS DECIMAL(4,1)) avg_proc_percentile,
-    COUNT(measure_id) proc_count,
-    CAST(100*SUM(CASE WHEN provider_rank>0.5 THEN 1 ELSE 0 END)/COUNT(measure_id) AS DECIMAL(4,1)) perc_above_50,
-    CAST(100*SUM(CASE WHEN provider_rank>0.80 THEN 1 ELSE 0 END)/COUNT(measure_id) AS DECIMAL(4,1)) perc_above_80
+    state,
+    CAST(100*AVG(state_rank) AS DECIMAL(5,1)) avg_perc,
+    COUNT(DISTINCT measure_id) measure_count,
+    CAST(100*SUM(CASE WHEN state_rank>0.5 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_50,
+    CAST(100*SUM(CASE WHEN state_rank>0.75 THEN 1 ELSE 0 END)/COUNT(DISTINCT measure_id) AS DECIMAL(4,1)) above_75
 FROM ( 
     SELECT 
-        provider_id,
+        state,
         measure_id,
-        score,
-        1 - (PERCENT_RANK() OVER (PARTITION BY measure_id ORDER BY score)) provider_rank
-    FROM my_procedures
-    WHERE score IS NOT NULL
-) A
-LEFT JOIN my_hospitals B
-ON A.provider_id = B.provider_id
-GROUP BY B.state
-ORDER BY avg_proc_percentile DESC
+        1 - (PERCENT_RANK() OVER (PARTITION BY measure_id ORDER BY avg_score)) state_rank
+    FROM (
+        SELECT 
+            state,
+            measure_id,
+            AVG(score) avg_score,
+            COUNT(DISTINCT p.provider_id) proc_count
+        FROM my_procedures p
+        LEFT JOIN my_hospitals h
+        ON h.provider_id = p.provider_id
+        WHERE score IS NOT NULL
+        GROUP BY state, measure_id
+        HAVING proc_count > 10
+    ) A
+) B
+GROUP BY state
+HAVING above_75 > 30
+AND measure_count > 20
+ORDER BY avg_perc DESC
 LIMIT 10;

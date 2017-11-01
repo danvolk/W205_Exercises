@@ -1,0 +1,30 @@
+Summary:
+For my analysis of best states, I follow a similar logic to that of best hospitals. I start by getting the average score for each procedure across all states. I then rank each state using a percentile rank from 0-1 where 1 is a good performance and 0 is a poor performance. Then I take the average percentile for each state across all of the procedures. The best states remaining are those that have the highest scores and consistently score above the median score.
+
+Methodology:
+I did this by first manipulating the my_procedures table so that all procedures were ordered by poor scores to high scores. That is when a low score is a better performance such as mortality rate the lowest score gets a high percentile score. When higher scores are worse the parquet table logic flips the ordering so that all procedures are ordered from good to bad. Once the my_procedures table is properly ordered, the following is done to determine the high performing hospitals.
+
+- Find the average score for each procedure performed within the state
+- Remove the instances where hospitals do not provide data
+- Keep only the average scores for procedures with more than 10 hospitals providing data. This helps control for consistency.
+- States are then ranked by percentile for each procedure where 0 is poor and 99 is good.
+- Finally, I get the average percentile score that each state gets and order them from highest to lowest. 
+- The above_80 column is used to remove states that show up above the 80th percentile in less than 30% of the time
+- The measure_count column is used to remove states that have percentile scores for less than 20 of the procedures.
+
+Findings: 
+The following 10 states have the highest average percentile rank across all procedures performed in the state. South Dakota performs well by scoring consistenly above the 50th percentile and actually scoring in the 75th percentile more than 47% of the time. Each state has a good amount of procedures used to assess the rank and each perform above average relatively frequently across procedures.
+
+
+|state |avg_percentile |measure_count |above_50 |above_75
+|------+---------------+--------------+---------+---------
+|SD    |67             |23            |69.6     |47.8
+|MN    |64.5           |34            |70.6     |47.1
+|WI    |62             |34            |67.6     |41.2
+|MA    |60.7           |34            |64.7     |44.1
+|UT    |60.6           |29            |69       |44.8
+|FL    |59.7           |34            |67.6     |35.3
+|VA    |58.9           |33            |51.5     |33.3
+|NE    |58.3           |29            |58.6     |41.4
+|KS    |57.4           |31            |54.8     |35.5
+|CO    |57.3           |33            |57.6     |30.3
