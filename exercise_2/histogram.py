@@ -9,11 +9,10 @@ def get_words(lb, ub, conn):
     SELECT * 
     FROM tweetwordcount 
     WHERE count between %s and %s 
-    ORDER BY count DESC;""", (lb,ub))
+    ORDER BY count DESC, word;""", (lb,ub))
     recs = cur.fetchall()
     for rec in recs:
-        print "word = ", rec[0]
-        print "count = ", rec[1], "\n"
+        print rec[0] + ':', rec[1]
     
 # Create a connection object to the tcount db
 conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")    

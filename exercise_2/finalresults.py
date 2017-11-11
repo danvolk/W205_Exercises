@@ -21,9 +21,7 @@ def allwords(conn):
     cur.execute("SELECT * FROM tweetwordcount ORDER BY word")
     recs = cur.fetchall()
     for rec in recs:
-        print "word = ", rec[0]
-        print "count = ", rec[1], "\n"
-    
+        print rec[0] + ':', rec[1]
     
 # Create a connection object to the tcount db
 conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")    
