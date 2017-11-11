@@ -11,11 +11,18 @@ class WordCounter(Bolt):
 
     def initialize(self, conf, ctx):
         self.counts = Counter()
+        # initialze a connection to the tcount db
         self.conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
+        
+        # Remove records records in the tcount db
+        self.cur = self.conn.cursor()
+        self.cur.execute("DELETE FROM tweetwordcount")
 
 
     def process(self, tup):
         word = tup.values[0]
+        # convert word to lowercase and remove unicode chars
+        word = str(word).lower()
 
         # Write codes to increment the word count in Postgres
         # Use psycopg to interact with Postgres
